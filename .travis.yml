@@ -36,8 +36,9 @@ matrix:
         - pwd
         - pip3 list
         # - coverage run tests.py
+        - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
-        - ./kuma-cp run #run Kuma in standalone mode for a "flat" deployment
+        - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment
         - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
       after_success:
         - codecov
@@ -68,7 +69,7 @@ matrix:
         # - coverage run tests.py
         - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
-        - ./kuma-cp run #run Kuma in standalone mode for a "flat" deployment        
+        - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment        
         - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
       after_success:
         - codecov
