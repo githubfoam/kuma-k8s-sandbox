@@ -59,18 +59,12 @@ matrix:
       install:
         - pip3 install codecov
         - pip install -r requirements.txt
-      script:
-        - python3 --version
-        - python2 --version
-        - python --version
-        - whoami
-        - pwd
-        - pip3 list
+      script: 
         # - coverage run tests.py
         - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment        
-        - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
+        # - ln -s ./kumactl /usr/local/bin/kumactl #ln: /usr/local/bin/kumactl: File exists
       after_success:
         - codecov
         - deactivate
@@ -79,27 +73,27 @@ matrix:
     # https://docs.travis-ci.com/user/reference/osx/
     # Installing Packages on macOS 
     # https://docs.travis-ci.com/user/installing-dependencies/#installing-packages-on-macos
-    - name: "Python 3.7.5 on macOS xcode10.2"
-      os: osx
-      osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
-      language: shell # 'language: python' is an error on Travis CI macOS
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-      install:
-        - pip3 install codecov
-        - pip install -r requirements.txt
-      script:
-        - python3 --version
-        - python2 --version
-        - python --version
-        - whoami
-        - pwd
-        - pip3 list
-        # - coverage run tests.py
-      after_success:
-        - codecov
-        - deactivate        
+    # - name: "Python 3.7.5 on macOS xcode10.2"
+    #   os: osx
+    #   osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
+    #   language: shell # 'language: python' is an error on Travis CI macOS
+    #   before_install:
+    #     - pip3 install virtualenv
+    #     - virtualenv -p $(which python3) ~venvpy3
+    #     - source ~venvpy3/bin/activate
+    #   install:
+    #     - pip3 install codecov
+    #     - pip install -r requirements.txt
+    #   script:
+    #     - python3 --version
+    #     - python2 --version
+    #     - python --version
+    #     - whoami
+    #     - pwd
+    #     - pip3 list
+    #     # - coverage run tests.py
+    #   after_success:
+    #     - codecov
+    #     - deactivate        
 
     
