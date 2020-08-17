@@ -8,23 +8,10 @@ matrix:
   fast_finish: true
   include:
 
-    
-    - name: "kuma demo minikube wo snaps Python 3.7 on bionic amd64"
-      dist: bionic
-      arch: amd64
-      language: python
-      python: 3.7
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - pip install -r requirements.txt
-      script:
-        - sudo make deploy-minikube-latest
-        - sudo make deploy-kong-kuma
-      after_success:
-        - deactivate
-
+    # The macOS Build Environment
+    # https://docs.travis-ci.com/user/reference/osx/
+    # Installing Packages on macOS 
+    # https://docs.travis-ci.com/user/installing-dependencies/#installing-packages-on-macos
     - name: "kuma w homebrew Python 3.7.5 on macOS 10.15.5 xcode12u "
       os: osx
       osx_image: xcode12u #Xcode build version
@@ -48,7 +35,7 @@ matrix:
         - whoami
         - pwd
         - pip3 list
-        - coverage run tests.py
+        # - coverage run tests.py
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run #run Kuma in standalone mode for a "flat" deployment
         - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
@@ -56,6 +43,10 @@ matrix:
         - codecov
         - deactivate
 
+    # The macOS Build Environment
+    # https://docs.travis-ci.com/user/reference/osx/
+    # Installing Packages on macOS 
+    # https://docs.travis-ci.com/user/installing-dependencies/#installing-packages-on-macos
     - name: "kuma wo homebrew Python 3.7.5 on macOS 10.15.5 xcode12u "
       os: osx
       osx_image: xcode12u #Xcode build version
@@ -74,7 +65,7 @@ matrix:
         - whoami
         - pwd
         - pip3 list
-        - coverage run tests.py
+        # - coverage run tests.py
         - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run #run Kuma in standalone mode for a "flat" deployment        
@@ -105,7 +96,7 @@ matrix:
         - whoami
         - pwd
         - pip3 list
-        - coverage run tests.py
+        # - coverage run tests.py
       after_success:
         - codecov
         - deactivate        
