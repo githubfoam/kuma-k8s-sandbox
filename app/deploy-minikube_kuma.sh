@@ -9,6 +9,7 @@ set -o xtrace
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.15.0/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
+kubectl version --client #ensure the version
 
 #https://minikube.sigs.k8s.io/docs/start/
 #https://github.com/kubernetes/minikube
@@ -21,6 +22,8 @@ mv ./kubectl /usr/local/bin/kubectl
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.2.0/minikube-linux-amd64
 chmod +x minikube
 cp minikube /usr/local/bin/ && rm minikube
+minikube version
+
 #starts Minikube with 6 CPUs, 12288 memory, 120G disk size
 minikube start --vm-driver=none \
                 --cpus 6 \
@@ -34,7 +37,6 @@ minikube start --vm-driver=none \
 eval "$(minikube docker-env --profile=minikube)" && export DOCKER_CLI='docker'
 
 echo "=========================================================================================="
-kubectl version --client #ensure the version
 kubectl cluster-info
 minikube status
 echo "=========================================================================================="

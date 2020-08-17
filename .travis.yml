@@ -19,6 +19,9 @@ matrix:
         homebrew:
           packages:            
             - kumactl
+            - minikube
+            - kubectl
+            - helm3
           update: true
       language: shell  # 'language: python' is an error on Travis CI macOS
       before_install:
@@ -26,20 +29,15 @@ matrix:
         - virtualenv -p $(which python3) ~venvpy3
         - source ~venvpy3/bin/activate
       install:
+        - minikube version 
+        - kubectl version --client        
         - pip3 install codecov
         - pip install -r requirements.txt
       script:
-        - python3 --version
-        - python2 --version
-        - python --version
-        - whoami
-        - pwd
-        - pip3 list
-        # - coverage run tests.py
         - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment
-        - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
+        # - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
       after_success:
         - codecov
         - deactivate
@@ -64,7 +62,17 @@ matrix:
         - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment        
-        # - ln -s ./kumactl /usr/local/bin/kumactl #ln: /usr/local/bin/kumactl: File exists
+        - ln -s ./kumactl /usr/local/bin/kumactl #ln: /usr/local/bin/kumactl: File exists
+        - |
+          curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
+          && chmod +x minikube && sudo mv minikube /usr/local/bin
+          minikube start --vm-driver=none \
+                --cpus 6 \
+                --memory 12288 \
+                --disk-size=120g \
+                --extra-config=apiserver.authorization-mode=RBAC \
+                --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf \
+                --extra-config kubeadm.ignore-preflight-errors=SystemVerification          
       after_success:
         - codecov
         - deactivate
