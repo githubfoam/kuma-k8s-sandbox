@@ -1,7 +1,7 @@
 # kuma-k8s-sandbox
 
 Travis (.com) branch:
-[![Build Status](https://travis-ci.com/githubfoam/kuma-k8s-sandbox.svg?branch=dev)](https://travis-ci.com/githubfoam/kuma-k8s-sandbox)  
+[![Build Status](https://travis-ci.com/githubfoam/kuma-k8s-sandbox.svg?branch=master)](https://travis-ci.com/githubfoam/kuma-k8s-sandbox)  
 
 ~~~~
 Kuma is a CNCF Sandbox project, open source and vendor neutral.
