@@ -29,8 +29,8 @@ matrix:
         - virtualenv -p $(which python3) ~venvpy3
         - source ~venvpy3/bin/activate
       install:
-        - minikube version 
-        - kubectl version --client        
+        - minikube version #GitVersion:"v1.18.8"
+        - kubectl version --client  #minikube version: v1.12.3      
         - pip3 install codecov
         - pip install -r requirements.txt
       script:
@@ -38,6 +38,7 @@ matrix:
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment
         # - ln -s ./kumactl /usr/local/bin/kumactl #adding the kumactl executable to your PATH
+        - minikube start --cpus 2 --memory 6144 --kubernetes-version v1.18.6 -p kuma-demo 
       after_success:
         - codecov
         - deactivate
@@ -62,17 +63,21 @@ matrix:
         - curl -L https://kuma.io/installer.sh | sh -
         - cd kuma-*/bin #https://kuma.io/docs/0.7.1/installation/macos/
         - ./kuma-cp run & #run Kuma in standalone mode for a "flat" deployment        
-        - ln -s ./kumactl /usr/local/bin/kumactl #ln: /usr/local/bin/kumactl: File exists
-        - |
+        - ln -s ./kumactl /usr/local/bin/kumactl #ln: /usr/local/bin/kumactl: File exists        
+        - | #The driver 'none' is not supported on darwin
           curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
-          && chmod +x minikube && sudo mv minikube /usr/local/bin
-          minikube start --vm-driver=none \
-                --cpus 6 \
-                --memory 12288 \
-                --disk-size=120g \
-                --extra-config=apiserver.authorization-mode=RBAC \
-                --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf \
-                --extra-config kubeadm.ignore-preflight-errors=SystemVerification          
+          && chmod +x minikube && sudo mv minikube /usr/local/bin && minikube version 
+          minikube start --cpus 2 --memory 6144 --kubernetes-version v1.18.6 -p kuma-demo        
+        # - | #The driver 'none' is not supported on darwin
+        #   curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \
+        #   && chmod +x minikube && sudo mv minikube /usr/local/bin && minikube version 
+        #   minikube start --vm-driver=none \
+        #         --cpus 6 \
+        #         --memory 12288 \
+        #         --disk-size=120g \
+        #         --extra-config=apiserver.authorization-mode=RBAC \
+        #         --extra-config=kubelet.resolv-conf=/run/systemd/resolve/resolv.conf \
+        #         --extra-config kubeadm.ignore-preflight-errors=SystemVerification          
       after_success:
         - codecov
         - deactivate
