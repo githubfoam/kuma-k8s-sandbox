@@ -81,6 +81,17 @@ for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
       fi
 done
 
+kubectl get pods -n kuma-demo
+echo echo "Waiting for kuma-demo to be ready..PodInitializing "
+for i in {1..60}; do # Timeout after 5 minutes, 60x5=300 secs
+      # if kubectl get pods --namespace=kubeflow -l openebs.io/component-name=centraldashboard | grep Running ; then
+      if kubectl get pods --namespace=kuma-demo  | grep PodInitializing ; then
+        sleep 10
+      else
+        break
+      fi
+done
+
 # looks near identical except each pod now has an additional container. 
 # The additional container is the Envoy sidecar proxy that the control-plane is automatically adding to each pod.
 kubectl get pods -n kuma-demo
