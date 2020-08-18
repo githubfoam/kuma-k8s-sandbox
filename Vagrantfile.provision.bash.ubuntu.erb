@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "kuma-control-plane" do |node| #The first machine hosts the Kuma control plane.
-    node.vm.box = "ubuntu/groovy64"
+    node.vm.box = "bento/ubuntu-19.10"
     node.vm.hostname = "kuma-cp"
     node.vm.network :private_network, ip: KUMA_CONTROL_PLANE_IP
     node.vm.provision "update_etc_hosts", type: "shell", path: "common/update_etc_hosts.sh", env: { "KUMA_CONTROL_PLANE_IP" => KUMA_CONTROL_PLANE_IP }
