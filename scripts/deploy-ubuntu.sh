@@ -33,7 +33,7 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 # https://app.vagrantup.com/ubuntu/boxes/groovy64 20.10
 vagrant box add "ubuntu/groovy64" --provider=virtualbox
 vagrant mutate "ubuntu/groovy64" libvirt
-vagrant init --template Vagrantfile.provision.bash.erb
+vagrant init --template Vagrantfile.provision.bash.ubuntu.erb
 # must be created in project root directory with Vagrantfile template file
 vagrant up --provider=libvirt "kuma-control-plane" 
 
