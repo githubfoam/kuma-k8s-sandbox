@@ -9,7 +9,7 @@ matrix:
   include:
 
     
-    - name: "kuma demo minikube wo snaps Python 3.7 on bionic amd64"
+    - name: "kuma demo w kvm qemu libvirt Python 3.7 on bionic amd64"
       dist: bionic
       arch: amd64
       language: python
@@ -20,7 +20,10 @@ matrix:
         - source ~venvpy3/bin/activate
         - pip install -r requirements.txt
       script:
-        - sudo make deploy-minikube-latest
-        - sudo make deploy-kong-kuma
+        - sudo make deploy-vagrant
+        - sudo make deploy-libvirt
+        - sudo make deploy-boxes
       after_success:
         - deactivate
+        - sudo vagrant destroy -f # required to run Vagrantfile template        
+        - sudo rm Vagrantfile # required to run Vagrantfile template          

@@ -1,15 +1,15 @@
 IMAGE := alpine/fio
 APP:="app/deploy-openesb.sh"
 
-deploy-kong-kuma:
-	bash app/deploy-kong-kuma.sh
+deploy-boxes:
+	bash scripts/deploy-boxes.sh
 
-deploy-minikube-latest:
-	bash app/deploy-minikube_latest.sh
+deploy-libvirt:
+	bash scripts/deploy-libvirt.sh
 
-deploy-minikube:
-	bash app/deploy-minikube.sh
+deploy-vagrant:
+	bash scripts/deploy-vagrant.sh
 
 push-image:
 	docker push $(IMAGE)
-.PHONY: deploy-openesb deploy-dashboard push-image
+.PHONY: deploy-vagrant deploy-libvirt deploy-boxes push-image
