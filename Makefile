@@ -4,6 +4,9 @@ APP:="app/deploy-openesb.sh"
 deploy-kong-kuma:
 	bash app/deploy-kong-kuma.sh
 
+deploy-macos-minikube-latest:
+	bash app/deploy-macos-minikube_latest.sh
+
 deploy-minikube-latest:
 	bash app/deploy-minikube_latest.sh
 
