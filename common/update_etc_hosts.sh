@@ -7,8 +7,6 @@ set -o xtrace
 
 echo "========================================================================================="
 
-set -e
-
 if [ -z "${KUMA_CONTROL_PLANE_IP}" ]; then
   echo "Error: environment variable KUMA_CONTROL_PLANE_IP is not set"
   exit 1
