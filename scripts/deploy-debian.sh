@@ -10,9 +10,11 @@ vagrant plugin install vagrant-libvirt #The vagrant-libvirt plugin is required w
 vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with different providers
 
 #https://github.com/chef/bento/tree/master/packer_templates/debian
-# vagrant box add "bento/debian-10.4" --provider=virtualbox
-# vagrant mutate "bento/debian-10.4" libvirt
-# vagrant up --provider=libvirt "vg-compute-05"
+vagrant box add "bento/debian-10.4" --provider=virtualbox
+vagrant mutate "bento/debian-10.4" libvirt
+vagrant init --template Vagrantfile.provision.bash.debian.erb 
+# must be created in project root directory with Vagrantfile template file
+vagrant up --provider=libvirt "kuma-control-plane"
 
 # TESTED OK
 # https://github.com/chef/bento/tree/master/packer_templates/centos
@@ -54,10 +56,10 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 # vagrant up --provider=libvirt "vg-compute-09"
 
 # https://app.vagrantup.com/debian/boxes/buster64 debian 10
-vagrant box add "debian/buster64" --provider=libvirt
-vagrant init --template Vagrantfile.provision.bash.debian.erb 
-# must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "kuma-control-plane"
+# vagrant box add "debian/buster64" --provider=libvirt
+# vagrant init --template Vagrantfile.provision.bash.debian.erb 
+# # must be created in project root directory with Vagrantfile template file
+# vagrant up --provider=libvirt "kuma-control-plane"
 
 # # https://github.com/chef/bento/tree/master/packer_templates/opensuse
 # vagrant box add  "bento/opensuse-leap-15.1" --provider=virtualbox

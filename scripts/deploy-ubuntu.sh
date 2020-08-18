@@ -31,18 +31,20 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 
 
 # https://app.vagrantup.com/ubuntu/boxes/groovy64 20.10
-vagrant box add "ubuntu/groovy64" --provider=virtualbox
-vagrant mutate "ubuntu/groovy64" libvirt
-vagrant init --template Vagrantfile.provision.bash.ubuntu.erb
-# must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "kuma-control-plane" 
+# vagrant box add "ubuntu/groovy64" --provider=virtualbox
+# vagrant mutate "ubuntu/groovy64" libvirt
+# vagrant init --template Vagrantfile.provision.bash.ubuntu.erb
+# # must be created in project root directory with Vagrantfile template file
+# vagrant up --provider=libvirt "kuma-control-plane" 
 
 
 # https://github.com/chef/bento/tree/master/packer_templates/ubuntu
-# vagrant box add "bento/ubuntu-19.10" --provider=virtualbox
-# vagrant mutate "bento/ubuntu-19.10" libvirt
-# vagrant init --template Vagrantfile.erb 
-# vagrant up --provider=libvirt "vg-compute-01"
+vagrant box add "bento/ubuntu-19.10" --provider=virtualbox
+vagrant mutate "bento/ubuntu-19.10" libvirt
+
+vagrant init --template Vagrantfile.provision.bash.ubuntu.erb
+# must be created in project root directory with Vagrantfile template file
+vagrant up --provider=libvirt "kuma-control-plane"
 
 # #https://github.com/chef/bento/tree/master/packer_templates/fedora
 # vagrant box add "bento/fedora-32" --provider=virtualbox
