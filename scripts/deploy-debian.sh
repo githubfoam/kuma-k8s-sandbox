@@ -30,12 +30,12 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 # vagrant up --provider=libvirt "kuma-control-plane" 
 
 
-# https://app.vagrantup.com/ubuntu/boxes/groovy64 20.10
-vagrant box add "ubuntu/groovy64" --provider=virtualbox
-vagrant mutate "ubuntu/groovy64" libvirt
-vagrant init --template Vagrantfile.provision.bash.erb
-# must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "kuma-control-plane" 
+# https://app.vagrantup.com/ubuntu/boxes/bionic64
+# vagrant box add "ubuntu/groovy64" --provider=virtualbox
+# vagrant mutate "ubuntu/groovy64" libvirt
+# vagrant init --template Vagrantfile.provision.bash.erb
+# # must be created in project root directory with Vagrantfile template file
+# vagrant up --provider=libvirt "kuma-control-plane" 
 
 
 # https://github.com/chef/bento/tree/master/packer_templates/ubuntu
@@ -52,6 +52,10 @@ vagrant up --provider=libvirt "kuma-control-plane"
 # # https://app.vagrantup.com/centos/boxes/8 # Ansible provision OK
 # vagrant box add "centos/8" --provider=libvirt
 # vagrant up --provider=libvirt "vg-compute-09"
+
+# https://app.vagrantup.com/debian/boxes/buster64 debian 10
+vagrant box add "debian/buster64" --provider=libvirt
+vagrant up --provider=libvirt "kuma-control-plane"
 
 # # https://github.com/chef/bento/tree/master/packer_templates/opensuse
 # vagrant box add  "bento/opensuse-leap-15.1" --provider=virtualbox
