@@ -7,6 +7,7 @@ set -o xtrace
 
 echo "=============================Install Vagrant============================================================="
 # export VAGRANT_CURRENT_VERSION="2.2.9"
+apt-get update -yqq
 apt-get install -qqy unzip jq
 
 # https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_SHA256SUMS
