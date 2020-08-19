@@ -1,6 +1,18 @@
 IMAGE := alpine/fio
 APP:="app/deploy-openesb.sh"
 
+deploy-archlinux:
+	bash scripts/deploy-archlinux.sh
+
+deploy-susesles:
+	bash scripts/deploy-susesles.sh
+
+deploy-opensuse:
+	bash scripts/deploy-opensuse.sh
+
+deploy-fedora:
+	bash scripts/deploy-fedora.sh
+
 deploy-centos:
 	bash scripts/deploy-centos.sh
 
