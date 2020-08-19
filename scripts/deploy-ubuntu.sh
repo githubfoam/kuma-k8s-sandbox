@@ -39,11 +39,19 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 
 
 # https://github.com/chef/bento/tree/master/packer_templates/ubuntu
-vagrant box add "bento/ubuntu-19.10" --provider=virtualbox
-vagrant mutate "bento/ubuntu-19.10" libvirt
+# vagrant box add "bento/ubuntu-19.10" --provider=virtualbox
+# vagrant mutate "bento/ubuntu-19.10" libvirt
+# vagrant init --template Vagrantfile.provision.bash.ubuntu.erb
+# # must be created in project root directory with Vagrantfile template file
+# vagrant up --provider=libvirt "kuma-control-plane"
+
+# https://github.com/chef/bento/tree/master/packer_templates/ubuntu
+vagrant box add "bento/ubuntu-20.04" --provider=virtualbox
+vagrant mutate "bento/ubuntu-20.04" libvirt
 vagrant init --template Vagrantfile.provision.bash.ubuntu.erb
 # must be created in project root directory with Vagrantfile template file
 vagrant up --provider=libvirt "kuma-control-plane"
+vagrant up --provider=libvirt "redis"
 
 # #https://github.com/chef/bento/tree/master/packer_templates/fedora
 # vagrant box add "bento/fedora-32" --provider=virtualbox
