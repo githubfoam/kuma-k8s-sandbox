@@ -55,7 +55,7 @@ vagrant plugin install vagrant-mutate #Convert vagrant boxes to work with differ
 vagrant box add "centos/8" --provider=libvirt
 vagrant init --template Vagrantfile.provision.bash.centos.erb 
 # must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "kuma-cp"
+vagrant up --provider=libvirt "kuma-control-plane"
 
 # https://app.vagrantup.com/debian/boxes/buster64 debian 10
 # vagrant box add "debian/buster64" --provider=libvirt

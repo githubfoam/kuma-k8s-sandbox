@@ -14,7 +14,7 @@ vagrant box add "bento/debian-10.4" --provider=virtualbox
 vagrant mutate "bento/debian-10.4" libvirt
 vagrant init --template Vagrantfile.provision.bash.debian.erb 
 # must be created in project root directory with Vagrantfile template file
-vagrant up --provider=libvirt "kuma-cp"
+vagrant up --provider=libvirt "kuma-control-plane"
 
 # TESTED OK
 # https://github.com/chef/bento/tree/master/packer_templates/centos
