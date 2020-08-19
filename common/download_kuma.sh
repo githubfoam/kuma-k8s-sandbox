@@ -5,7 +5,7 @@ set -o nounset
 set -o xtrace
 # set -eox pipefail #safety for script
 
-echo "========================================================================================="
+echo "===================download kuma======================================================================"
 
 if [ -z "${KUMA_VERSION}" ]; then
   echo "Error: environment variable KUMA_VERSION is not set"
@@ -31,4 +31,4 @@ curl --silent https://kuma.io/installer.sh | sh >/dev/null 2>&1
 mv kuma-${KUMA_VERSION} ${KUMA_HOME}
 export PATH=$PATH:$KUMA_HOME/bin
 
-echo "========================================================================================="
+echo "=====================download kuma finished===================================================================="

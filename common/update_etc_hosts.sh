@@ -5,7 +5,7 @@ set -o nounset
 set -o xtrace
 # set -eox pipefail #safety for script
 
-echo "========================================================================================="
+echo "======================update hosts==================================================================="
 
 if [ -z "${KUMA_CONTROL_PLANE_IP}" ]; then
   echo "Error: environment variable KUMA_CONTROL_PLANE_IP is not set"
@@ -16,4 +16,4 @@ echo "
 ${KUMA_CONTROL_PLANE_IP} kuma-cp
 " >> /etc/hosts
 
-echo "========================================================================================="
+echo "=======================update hosts finished=================================================================="
