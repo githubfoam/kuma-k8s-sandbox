@@ -1,6 +1,9 @@
 IMAGE := alpine/fio
 APP:="app/deploy-openesb.sh"
 
+deploy-centos:
+	bash scripts/deploy-centos.sh
+
 deploy-debian:
 	bash scripts/deploy-debian.sh
 
