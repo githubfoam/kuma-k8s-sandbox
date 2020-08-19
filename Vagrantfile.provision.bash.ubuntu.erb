@@ -16,7 +16,7 @@ METRICS_IP                 = "192.168.33.80"
 Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 512
     v.cpus = 1
   end
 
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision "configure_kumactl", type: "shell", path: "common/configure_kumactl.sh"
     node.vm.provision "register_dataplane", type: "shell", path: "common/register_dataplane.sh", env: {"KUMA_DATAPLANE_FILE" => "/vagrant/redis/kuma/dataplane.yaml", "KUMA_DATAPLANE_IP" => REDIS_IP}, run: "always"
     node.vm.provision "install_kuma-dp", type: "shell", path: "common/install_kuma-dp.sh", env: {"KUMA_DP_UNIT_FILE" => "/vagrant/redis/kuma/kuma-dp.service"}
-    node.vm.provision "await_kuma-dp", type: "shell", path: "common/await_service.sh", env: {"SERVICE_URL" => "http://localhost:9901/ready"}, privileged: false, run: "always"
+    <%# node.vm.provision "await_kuma-dp", type: "shell", path: "common/await_service.sh", env: {"SERVICE_URL" => "http://localhost:9901/ready"}, privileged: false, run: "always" %>
   end
 
   config.vm.define "postgresql" do |node|
