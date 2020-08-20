@@ -6,7 +6,7 @@ set -o xtrace
 # set -eox pipefail #safety for script
 
 echo "===================waiting for service======================================================================"
-export SERVICE_URL="http://localhost:5681"
+export SERVICE_URL="http://localhost:9901/ready"
 echo $SERVICE_URL
 
 if [ -z "${SERVICE_URL}" ]; then
