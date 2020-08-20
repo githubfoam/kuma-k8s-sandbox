@@ -15,7 +15,7 @@ if [ -z "${SERVICE_URL}" ]; then
 fi
 
 # Wait for service to start
-for i in `seq 1 60`; do
+for i in `seq 1 120`; do
     echo "try #$i: "
     if curl --silent --show-error --fail ${SERVICE_URL} ; then
         exit 0
